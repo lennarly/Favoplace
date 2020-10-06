@@ -6,22 +6,68 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Favorite Places-->
         <scene sceneID="M5q-OV-1js">
             <objects>
                 <tableViewController id="2fg-W6-xlq" customClass="MainViewController" customModule="Favoplace" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNO-SB-xTB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNO-SB-xTB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Vwn-CE-mdG">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Vwn-CE-mdG" customClass="CustomTableViewCell" customModule="Favoplace" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vwn-CE-mdG" id="66y-ua-Fk0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-zB-fyc">
+                                            <rect key="frame" x="10" y="15" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="DQn-Oe-2mU"/>
+                                                <constraint firstAttribute="height" constant="70" id="ryl-pY-BK0"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TItle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmD-Px-Ajf">
+                                            <rect key="frame" x="95" y="5" width="309" height="22"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-l4-d1K">
+                                            <rect key="frame" x="95" y="75" width="309" height="18"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-vJ-hFr">
+                                            <rect key="frame" x="95" y="50" width="299" height="20"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="n1F-zB-fyc" firstAttribute="leading" secondItem="66y-ua-Fk0" secondAttribute="leading" constant="10" id="8MA-Fz-fE6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VNI-vJ-hFr" secondAttribute="trailing" id="8R6-Qf-Hk1"/>
+                                        <constraint firstItem="JmD-Px-Ajf" firstAttribute="top" secondItem="66y-ua-Fk0" secondAttribute="top" constant="5" id="9Qy-4e-t5t"/>
+                                        <constraint firstAttribute="trailing" secondItem="JmD-Px-Ajf" secondAttribute="trailing" constant="10" id="IuW-15-FTP"/>
+                                        <constraint firstItem="Tf5-l4-d1K" firstAttribute="leading" secondItem="n1F-zB-fyc" secondAttribute="trailing" constant="15" id="UHJ-5W-Njc"/>
+                                        <constraint firstItem="VNI-vJ-hFr" firstAttribute="leading" secondItem="n1F-zB-fyc" secondAttribute="trailing" constant="15" id="a6w-Fz-NaW"/>
+                                        <constraint firstAttribute="bottom" secondItem="Tf5-l4-d1K" secondAttribute="bottom" constant="7" id="b2b-Ay-FaQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tf5-l4-d1K" secondAttribute="trailing" constant="10" id="dvs-KZ-cDr"/>
+                                        <constraint firstItem="JmD-Px-Ajf" firstAttribute="leading" secondItem="n1F-zB-fyc" secondAttribute="trailing" constant="15" id="eiP-O4-AgB"/>
+                                        <constraint firstItem="Tf5-l4-d1K" firstAttribute="top" secondItem="VNI-vJ-hFr" secondAttribute="bottom" constant="5" id="m2H-d5-rgG"/>
+                                        <constraint firstItem="n1F-zB-fyc" firstAttribute="centerY" secondItem="66y-ua-Fk0" secondAttribute="centerY" id="oPK-qd-1UC"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageOfPlace" destination="n1F-zB-fyc" id="AIB-YS-Big"/>
+                                    <outlet property="locationAddress" destination="VNI-vJ-hFr" id="0eI-2N-nkf"/>
+                                    <outlet property="title" destination="JmD-Px-Ajf" id="DJ5-Ef-M1u"/>
+                                    <outlet property="type" destination="Tf5-l4-d1K" id="i9J-Le-a33"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -29,11 +75,11 @@
                             <outlet property="delegate" destination="2fg-W6-xlq" id="HyM-7R-kHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="QH4-eA-s1K"/>
+                    <navigationItem key="navigationItem" title="Favorite Places" id="QH4-eA-s1K"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9P-vP-YiN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="143" y="71"/>
+            <point key="canvasLocation" x="140.57971014492756" y="70.982142857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MyN-un-6hE">
@@ -42,6 +88,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dhQ-6I-tb1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="2fg-W6-xlq" kind="relationship" relationship="rootViewController" id="3Y2-1H-oJv"/>

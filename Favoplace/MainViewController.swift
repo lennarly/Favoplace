@@ -30,13 +30,23 @@ class MainViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         let publicSpaceTitle = publicSpacesArray[indexPath.row]
         
-        cell.textLabel?.text = publicSpaceTitle
-        cell.imageView?.image = UIImage(named: publicSpaceTitle)
+        cell.title.text = publicSpaceTitle
+        cell.locationAddress.text = "Location"
+        cell.type.text = "Club"
+        cell.imageOfPlace.image = UIImage(named: publicSpaceTitle)
+        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
+        cell.imageOfPlace.clipsToBounds = true
 
         return cell
+    }
+    
+    // MARK: Table view delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 
     /*
