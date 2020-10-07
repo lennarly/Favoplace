@@ -12,6 +12,8 @@ class NewPlaceVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
     }
     
     // MARK: TableView delegate
