@@ -8,15 +8,9 @@
 
 import UIKit
 
-class MainViewController: UITableViewController {
+class MainVC: UITableViewController {
     
-    let publicSpacesArray = [
-        "Burzhuyka",
-        "Gastro Gallery",
-        "Jagger bar",
-        "Music Hall 27",
-        "Rossinsky"
-    ]
+    let places = Place.getPlaces()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,28 +19,23 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return publicSpacesArray.count
+        return places.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        let publicSpaceTitle = publicSpacesArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PlaceCell
+        let place = places[indexPath.row]
         
-        cell.title.text = publicSpaceTitle
-        cell.locationAddress.text = "Location"
-        cell.type.text = "Club"
-        cell.imageOfPlace.image = UIImage(named: publicSpaceTitle)
+        cell.title.text = place.title
+        cell.locationAddress.text = place.address
+        cell.type.text = place.type
+        
+        cell.imageOfPlace.image = UIImage(named: place.image)
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
 
         return cell
-    }
-    
-    // MARK: Table view delegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
     }
 
     /*
@@ -58,5 +47,9 @@ class MainViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {
+        
+    }
 
 }
