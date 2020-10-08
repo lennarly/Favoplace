@@ -10,14 +10,28 @@ import UIKit
 
 class NewPlaceVC: UITableViewController {
     
+    @IBOutlet weak var inputImage: UIImageView!
+    @IBOutlet weak var inputName: UITextField!
+    @IBOutlet weak var inputAddress: UITextField!
+    @IBOutlet weak var inputType: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    // Place object (optional)
+    var newPlace: Place?
+    
     // Cell index for image selection
     let imageIndexCell = 0
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
         // Disable separators for blank cells
         tableView.tableFooterView = UIView()
+        
+        // Disable save button by default
+        saveButton.isEnabled = false
+        
+        inputName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
     }
     
     // MARK: TableView delegate
@@ -51,6 +65,16 @@ class NewPlaceVC: UITableViewController {
         
     }
     
+    func getNewPlace() -> Place {
+        return Place(title: inputName.text!,
+                         locationAddress: inputAddress.text,
+                         type: inputType.text,
+                         imageOfPlace: inputImage.image)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 // MARK: Text field delegate
@@ -60,16 +84,21 @@ extension NewPlaceVC: UITextFieldDelegate {
         return textField.resignFirstResponder()
     }
     
+    @objc private func textFieldChanged() {
+        saveButton.isEnabled = !inputName.text!.isEmpty
+    }
+    
 }
 
 // MARK: Work with image
-extension NewPlaceVC {
+extension NewPlaceVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         
         if UIImagePickerController.isSourceTypeAvailable(source) {
             
             let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
             
             // Allow the user to edit the image
             imagePicker.allowsEditing = true
@@ -79,6 +108,17 @@ extension NewPlaceVC {
             
             present(imagePicker, animated: true, completion: nil)
         }
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        inputImage.image = info[.editedImage] as? UIImage
+        inputImage.contentMode = .scaleAspectFill
+        inputImage.clipsToBounds = true
+        
+        dismiss(animated: true, completion: nil)
         
     }
     

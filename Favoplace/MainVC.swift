@@ -10,13 +10,16 @@ import UIKit
 
 class MainVC: UITableViewController {
     
-    let places = Place.getPlaces()
+    var places = [Place]()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+
+        // Disable separators for blank cells
+        tableView.tableFooterView = UIView()
+        
     }
 
-    // MARK: - Table view data source
+    // MARK: Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
@@ -28,10 +31,10 @@ class MainVC: UITableViewController {
         let place = places[indexPath.row]
         
         cell.title.text = place.title
-        cell.locationAddress.text = place.address
+        cell.locationAddress.text = place.locationAddress
         cell.type.text = place.type
         
-        cell.imageOfPlace.image = UIImage(named: place.image)
+        cell.imageOfPlace.image = place.imageOfPlace
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
 
@@ -48,7 +51,18 @@ class MainVC: UITableViewController {
     }
     */
     
-    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {
+    // MARK: Exit from New place modal
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        
+        guard let newPlaceVC = segue.source as? NewPlaceVC else { return }
+        let newPlaceObject = newPlaceVC.getNewPlace()
+        
+        // Add a new place element to the array
+        places.append(newPlaceObject)
+        
+        // Update the table init's
+        tableView.reloadData()
         
     }
 
