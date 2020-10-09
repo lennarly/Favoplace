@@ -61,6 +61,7 @@
                                         <constraint firstItem="n1F-zB-fyc" firstAttribute="centerY" secondItem="66y-ua-Fk0" secondAttribute="centerY" id="oPK-qd-1UC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="imageOfPlace" destination="n1F-zB-fyc" id="AIB-YS-Big"/>
                                     <outlet property="locationAddress" destination="VNI-vJ-hFr" id="0eI-2N-nkf"/>

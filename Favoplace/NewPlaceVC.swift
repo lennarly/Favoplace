@@ -16,9 +16,6 @@ class NewPlaceVC: UITableViewController {
     @IBOutlet weak var inputType: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    // Place object (optional)
-    var newPlace: Place?
-    
     // Cell index for image selection
     let imageIndexCell = 0
 
@@ -30,6 +27,7 @@ class NewPlaceVC: UITableViewController {
         // Disable save button by default
         saveButton.isEnabled = false
         
+        // Text field change event
         inputName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
     }
@@ -65,11 +63,15 @@ class NewPlaceVC: UITableViewController {
         
     }
     
-    func getNewPlace() -> Place {
-        return Place(title: inputName.text!,
-                         locationAddress: inputAddress.text,
-                         type: inputType.text,
-                         imageOfPlace: inputImage.image)
+    func saveNewPlace() {
+        
+        let newPlace = Place(title: inputName.text!,
+                             locationAddress: inputAddress.text,
+                             type: inputType.text,
+                             imageOfPlace: inputImage.image?.pngData())
+        
+        StorageManager.saveObject(newPlace)
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {

@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652482E85093382DB54A1BE8 /* Pods_Favoplace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EBCB9B0DB6EEE454A9496 /* Pods_Favoplace.framework */; };
+		EB1F5E5D2530A417007114EF /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1F5E5C2530A417007114EF /* StorageManager.swift */; };
 		EB7A8575252E1F4C009355E5 /* NewPlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A8574252E1F4C009355E5 /* NewPlaceVC.swift */; };
 		EB8811FF252C300D0003815D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8811FE252C300D0003815D /* AppDelegate.swift */; };
 		EB881201252C300D0003815D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB881200252C300D0003815D /* SceneDelegate.swift */; };
@@ -19,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		194EBCB9B0DB6EEE454A9496 /* Pods_Favoplace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Favoplace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65972433F8A3DDF17321DFF3 /* Pods-Favoplace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favoplace.release.xcconfig"; path = "Target Support Files/Pods-Favoplace/Pods-Favoplace.release.xcconfig"; sourceTree = "<group>"; };
+		EB1F5E5C2530A417007114EF /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		EB7A8574252E1F4C009355E5 /* NewPlaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceVC.swift; sourceTree = "<group>"; };
 		EB8811FB252C300D0003815D /* Favoplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Favoplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8811FE252C300D0003815D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +35,7 @@
 		EB881212252C359D0003815D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		EB881214252C3DC60003815D /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		F8AC46495FC3509E013321D9 /* Pods-Favoplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favoplace.debug.xcconfig"; path = "Target Support Files/Pods-Favoplace/Pods-Favoplace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652482E85093382DB54A1BE8 /* Pods_Favoplace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4969CD5DDA8303ECC3A25ABC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				194EBCB9B0DB6EEE454A9496 /* Pods_Favoplace.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4BAAC6BA5D68D01F9F09B7CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F8AC46495FC3509E013321D9 /* Pods-Favoplace.debug.xcconfig */,
+				65972433F8A3DDF17321DFF3 /* Pods-Favoplace.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EB8811F2252C300D0003815D = {
 			isa = PBXGroup;
 			children = (
 				EB8811FD252C300D0003815D /* Favoplace */,
 				EB8811FC252C300D0003815D /* Products */,
+				4BAAC6BA5D68D01F9F09B7CE /* Pods */,
+				4969CD5DDA8303ECC3A25ABC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +94,7 @@
 				EB7A8574252E1F4C009355E5 /* NewPlaceVC.swift */,
 				EB881214252C3DC60003815D /* PlaceCell.swift */,
 				EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */,
+				EB1F5E5C2530A417007114EF /* StorageManager.swift */,
 				EB881204252C300D0003815D /* Main.storyboard */,
 				EB881207252C300E0003815D /* Assets.xcassets */,
 				EB881209252C300E0003815D /* LaunchScreen.storyboard */,
@@ -83,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB88120F252C300E0003815D /* Build configuration list for PBXNativeTarget "Favoplace" */;
 			buildPhases = (
+				F84C974EC1D4F3F8200A6A31 /* [CP] Check Pods Manifest.lock */,
 				EB8811F7252C300D0003815D /* Sources */,
 				EB8811F8252C300D0003815D /* Frameworks */,
 				EB8811F9252C300D0003815D /* Resources */,
+				40039067829F75026780B2BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -142,6 +171,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		40039067829F75026780B2BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Favoplace/Pods-Favoplace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Favoplace/Pods-Favoplace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Favoplace/Pods-Favoplace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F84C974EC1D4F3F8200A6A31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Favoplace-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB8811F7252C300D0003815D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,6 +221,7 @@
 				EB7A8575252E1F4C009355E5 /* NewPlaceVC.swift in Sources */,
 				EB881213252C359D0003815D /* MainVC.swift in Sources */,
 				EB8811FF252C300D0003815D /* AppDelegate.swift in Sources */,
+				EB1F5E5D2530A417007114EF /* StorageManager.swift in Sources */,
 				EBEB437F252D921E00DDA4B5 /* PlaceModel.swift in Sources */,
 				EB881215252C3DC60003815D /* PlaceCell.swift in Sources */,
 				EB881201252C300D0003815D /* SceneDelegate.swift in Sources */,
@@ -294,6 +366,7 @@
 		};
 		EB881210252C300E0003815D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8AC46495FC3509E013321D9 /* Pods-Favoplace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +385,7 @@
 		};
 		EB881211252C300E0003815D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65972433F8A3DDF17321DFF3 /* Pods-Favoplace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

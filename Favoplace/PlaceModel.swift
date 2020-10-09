@@ -6,13 +6,21 @@
 //  Copyright © 2020 Lenar Valeev. All rights reserved.
 //
 
-import UIKit
+import RealmSwift
 
-struct Place {
+class Place: Object {
     
-    var title: String
-    var locationAddress: String?
-    var type: String?
-    var imageOfPlace: UIImage?
+    @objc dynamic var title = ""
+    @objc dynamic var locationAddress: String?
+    @objc dynamic var type: String?
+    @objc dynamic var imageOfPlace: Data?
+    
+    convenience init(title: String, locationAddress: String?, type: String?, imageOfPlace: Data?) {
+        self.init()
+        self.title = title
+        self.locationAddress = locationAddress
+        self.type = type
+        self.imageOfPlace = imageOfPlace
+    }
     
 }
