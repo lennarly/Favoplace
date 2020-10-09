@@ -57,6 +57,40 @@ class MainVC: UITableViewController {
     }
     */
     
+    
+    // MARK: Table view delegate
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let place = places[indexPath.row]
+        
+        let deleteItem = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler)  in
+            
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Are you sure?",
+                                                    preferredStyle: .alert)
+
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+                StorageManager.deleteObject(place)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+                completionHandler(true)
+            })
+            
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true)
+        
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteItem])
+        
+        return swipeActions
+    }
+    
     // MARK: Exit from New place modal
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
