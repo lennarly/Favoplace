@@ -18,7 +18,13 @@ class NewPlaceVC: UITableViewController {
     
     // Cell index for image selection
     let imageIndexCell = 0
-
+    
+    // Change mode
+    var changeOfPlaceMode: Bool = false
+    
+    // Place ID to change
+    var changeOfPlaceID = 0
+    
     override func viewDidLoad() {
 
         // Disable separators for blank cells
@@ -30,9 +36,13 @@ class NewPlaceVC: UITableViewController {
         // Text field change event
         inputName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
+        // Screen initialization for change mode
+        setupEditScreen()
+        
     }
     
-    // MARK: TableView delegate
+    // MARK: Table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == imageIndexCell {
@@ -63,23 +73,64 @@ class NewPlaceVC: UITableViewController {
         
     }
     
-    func saveNewPlace() {
+    private func setupEditScreen() {
+        if changeOfPlaceMode {
+            guard let place = StorageManager.getObject(changeOfPlaceID) else { return }
+            
+            setupNavigationBar(place)
+            setupInputsValue(place)
+        }
+    }
+    
+    private func setupNavigationBar(_ place: Place) {
         
-        let newPlace = Place(title: inputName.text!,
-                             locationAddress: inputAddress.text,
-                             type: inputType.text,
-                             imageOfPlace: inputImage.image?.pngData())
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        }
         
-        StorageManager.saveObject(newPlace)
+        title = place.title
+        navigationItem.leftBarButtonItem = nil
+        
+        // Enable save button by default
+        saveButton.isEnabled = true
+    }
+    
+    private func setupInputsValue(_ place: Place) {
+        
+        if let imageData = place.imageOfPlace {
+            inputImage.image = UIImage(data: imageData)
+            inputImage.contentMode = .scaleAspectFill
+        }
+        
+        inputName.text = place.title
+        inputAddress.text = place.locationAddress
+        inputType.text = place.type
+        
+    }
+        
+    public func savePlace() {
+        
+        let place = Place(title: inputName.text!,
+                          locationAddress: inputAddress.text,
+                          type: inputType.text,
+                          imageOfPlace: inputImage.image?.pngData())
+        
+        if changeOfPlaceMode {
+            place.id = changeOfPlaceID
+        }
+        
+        StorageManager.updateOrCreate(place)
         
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
 }
 
 // MARK: Text field delegate
+
 extension NewPlaceVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -88,11 +139,17 @@ extension NewPlaceVC: UITextFieldDelegate {
     
     @objc private func textFieldChanged() {
         saveButton.isEnabled = !inputName.text!.isEmpty
+        
+        if changeOfPlaceMode {
+            title = inputName.text!.isEmpty ? "Title" : inputName.text
+        }
+        
     }
     
 }
 
 // MARK: Work with image
+
 extension NewPlaceVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {

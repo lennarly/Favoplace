@@ -10,6 +10,8 @@ import UIKit
 
 class PlaceCell: UITableViewCell {
 
+    var id = -1
+    
     @IBOutlet weak var imageOfPlace: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var locationAddress: UILabel!

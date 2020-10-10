@@ -13,9 +13,21 @@ let realm = try! Realm()
 
 class StorageManager {
     
-    static func saveObject(_ place: Place) {
+    static func incrementID() -> Int {
+        return (realm.objects(Place.self).max(ofProperty: "id") as Int? ?? 0) + 1
+    }
+    
+    static func getObject(_ id: Int) -> Place? {
+        return realm.objects(Place.self).filter("id == \(id)").first
+    }
+    
+    static func getAll() -> Results<Place>? {
+        return realm.objects(Place.self)
+    }
+
+    static func updateOrCreate(_ place: Place) {
         try! realm.write {
-            realm.add(place)
+            realm.add(place, update: .modified)
         }
     }
     

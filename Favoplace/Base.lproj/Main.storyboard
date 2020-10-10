@@ -41,13 +41,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-vJ-hFr">
                                                     <rect key="frame" x="0.0" y="27" width="289" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-l4-d1K">
                                                     <rect key="frame" x="0.0" y="51.5" width="289" height="18"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -67,6 +67,7 @@
                                     <outlet property="locationAddress" destination="VNI-vJ-hFr" id="0eI-2N-nkf"/>
                                     <outlet property="title" destination="JmD-Px-Ajf" id="DJ5-Ef-M1u"/>
                                     <outlet property="type" destination="Tf5-l4-d1K" id="i9J-Le-a33"/>
+                                    <segue destination="KkT-MU-lWF" kind="show" identifier="ShowDetail" id="lcE-f2-yRA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,7 +76,7 @@
                             <outlet property="delegate" destination="2fg-W6-xlq" id="HyM-7R-kHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorite Places" id="QH4-eA-s1K">
+                    <navigationItem key="navigationItem" title="Favorite Places" largeTitleDisplayMode="always" id="QH4-eA-s1K">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kBL-8f-4U0">
                             <connections>
                                 <segue destination="J1N-t5-FGQ" kind="presentation" id="2pp-16-QMs"/>
@@ -92,7 +93,7 @@
             <objects>
                 <tableViewController id="KkT-MU-lWF" customClass="NewPlaceVC" customModule="Favoplace" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WFz-Jw-52G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -138,6 +139,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Place name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-en-AFw">
                                                             <rect key="frame" x="0.0" y="32" width="374" height="18.5"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                             <connections>
@@ -172,6 +174,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="reV-In-4kR">
                                                             <rect key="frame" x="0.0" y="32" width="374" height="18.5"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                             <connections>
@@ -206,6 +209,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type of place" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCR-Dx-ivy">
                                                             <rect key="frame" x="0.0" y="32" width="374" height="18.5"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                             <connections>
@@ -230,13 +234,13 @@
                             <outlet property="delegate" destination="KkT-MU-lWF" id="Ujw-Iz-TN8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New place" id="Br4-SK-pes">
+                    <navigationItem key="navigationItem" title="New place" largeTitleDisplayMode="always" id="Br4-SK-pes">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="QMZ-m0-LXG">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="KkT-MU-lWF" id="dd0-aw-zZb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="MFb-cm-CjQ">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="MFb-cm-CjQ">
                             <connections>
                                 <segue destination="GGH-2k-uZg" kind="unwind" unwindAction="unwindSegue:" id="BTO-PB-xeb"/>
                             </connections>
@@ -253,14 +257,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUH-Dm-ApY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="GGH-2k-uZg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1882.608695652174" y="68.973214285714278"/>
+            <point key="canvasLocation" x="990" y="71"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MyN-un-6hE">
             <objects>
                 <navigationController id="U6c-Zj-BLN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dhQ-6I-tb1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dhQ-6I-tb1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
@@ -290,9 +294,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XA-Lg-3Qq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972.46376811594212" y="68.973214285714278"/>
+            <point key="canvasLocation" x="990" y="-652"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lcE-f2-yRA"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="default-image" width="240" height="135"/>
     </resources>

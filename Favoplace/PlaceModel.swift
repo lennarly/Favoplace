@@ -10,6 +10,7 @@ import RealmSwift
 
 class Place: Object {
     
+    @objc dynamic var id = -1
     @objc dynamic var title = ""
     @objc dynamic var locationAddress: String?
     @objc dynamic var type: String?
@@ -17,10 +18,15 @@ class Place: Object {
     
     convenience init(title: String, locationAddress: String?, type: String?, imageOfPlace: Data?) {
         self.init()
+        self.id = StorageManager.incrementID()
         self.title = title
         self.locationAddress = locationAddress
         self.type = type
         self.imageOfPlace = imageOfPlace
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
     
 }
