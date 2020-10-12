@@ -11,11 +11,14 @@ import RealmSwift
 
 class MainVC: UITableViewController {
     
+    // Search Controller
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     // Query Realm for all places
-    var places = StorageManager.getAll()
+    private var places = StorageManager.getAll()
     
     // Observe notification
-    var notificationToken: NotificationToken? = nil
+    private var notificationToken: NotificationToken? = nil
 
     override func viewDidLoad() {
         
@@ -25,6 +28,16 @@ class MainVC: UITableViewController {
         tableView.tableFooterView = UIView()
 
         // Observe Results Notifications
+        setupObserveNotifications()
+        
+        // Installing the search controller
+        setupSearchController()
+        
+    }
+    
+    // MARK: Observe Results Notifications
+    
+    private func setupObserveNotifications() {
         notificationToken = places?.observe { [weak self] (changes: RealmCollectionChange) in
             
             guard let tableView = self?.tableView else { return }
@@ -49,6 +62,18 @@ class MainVC: UITableViewController {
                     fatalError("\(error)")
             }
         }
+    }
+    
+    // MARK: Search controller params
+    
+    private func setupSearchController() {
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
     }
 
@@ -98,25 +123,58 @@ class MainVC: UITableViewController {
                                                     message: "Are you sure?",
                                                     preferredStyle: .alert)
 
+            // Button to delete place
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
                 StorageManager.deleteObject(place)
-//                self.tableView.deleteRows(at: [indexPath], with: .automatic)
             })
+            alertController.addAction(deleteAction)
             
+            // Button to cancel
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 completionHandler(true)
             })
-            
-            alertController.addAction(deleteAction)
             alertController.addAction(cancelAction)
 
-            self.present(alertController, animated: true)
+            self.present(alertController, animated: true, completion: nil)
         
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteItem])
         
         return swipeActions
+    }
+    
+    @IBAction func sortTouched(_ sender: UIBarButtonItem) {
+        
+        let actionSheet = UIAlertController(title: "Sort by", message: nil, preferredStyle: .actionSheet)
+
+        // Button to sort alphabetically
+        let alphabet = UIAlertAction(title: "Alphabetical", style: .default) { (_) in
+            self.places = self.places!.sorted(byKeyPath: "title", ascending: true)
+            self.tableView.reloadData()
+        }
+        actionSheet.addAction(alphabet)
+        
+        // Button to sort by date
+        let newest = UIAlertAction(title: "Newest", style: .default) { (_) in
+            self.places = self.places!.sorted(byKeyPath: "date", ascending: false)
+            self.tableView.reloadData()
+        }
+        actionSheet.addAction(newest)
+        
+        // Button to sort by date
+        let oldest = UIAlertAction(title: "Oldest", style: .default) { (_) in
+            self.places = self.places!.sorted(byKeyPath: "date", ascending: true)
+            self.tableView.reloadData()
+        }
+        actionSheet.addAction(oldest)
+        
+        // Button for cancel
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
     }
     
     // MARK: - Navigation
@@ -146,6 +204,28 @@ class MainVC: UITableViewController {
         
     }
 
+}
+
+extension MainVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        let places = StorageManager.getAll()!
+        
+        if searchText.isEmpty {
+            self.places = places
+        } else {
+            self.places = places.filter("title CONTAINS[c] %@ OR locationAddress CONTAINS[c] %@", searchText, searchText)
+        }
+        
+        self.tableView.reloadData()
+        self.setupObserveNotifications()
+    }
+    
 }
 
 extension UITableView {

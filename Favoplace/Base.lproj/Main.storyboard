@@ -77,6 +77,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorite Places" largeTitleDisplayMode="always" id="QH4-eA-s1K">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="070-rt-vgF">
+                            <connections>
+                                <action selector="sortTouched:" destination="2fg-W6-xlq" id="e56-Fw-io4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kBL-8f-4U0">
                             <connections>
                                 <segue destination="J1N-t5-FGQ" kind="presentation" id="2pp-16-QMs"/>

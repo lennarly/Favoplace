@@ -15,6 +15,7 @@ class Place: Object {
     @objc dynamic var locationAddress: String?
     @objc dynamic var type: String?
     @objc dynamic var imageOfPlace: Data?
+    @objc dynamic var date = Date()
     
     convenience init(title: String, locationAddress: String?, type: String?, imageOfPlace: Data?) {
         self.init()
