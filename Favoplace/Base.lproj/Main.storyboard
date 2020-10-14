@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U6c-Zj-BLN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U6c-Zj-BLN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17502"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNO-SB-xTB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Vwn-CE-mdG" customClass="PlaceCell" customModule="Favoplace" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
@@ -100,7 +103,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WFz-Jw-52G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="tUY-Yi-LXl">
@@ -115,11 +118,24 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="spI-4o-pm0">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC8-l2-r66">
+                                                    <rect key="frame" x="354" y="199" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Eja-3T-u96"/>
+                                                        <constraint firstAttribute="height" constant="40" id="RZm-TB-58w"/>
+                                                    </constraints>
+                                                    <state key="normal" image="maps-and-flags"/>
+                                                    <connections>
+                                                        <segue destination="BQy-px-Pku" kind="presentation" identifier="ShowMap" id="W1S-yR-WId"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="spI-4o-pm0" secondAttribute="bottom" id="4G8-WJ-QUQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="spI-4o-pm0" secondAttribute="trailing" id="PeI-EP-aQ9"/>
                                                 <constraint firstItem="spI-4o-pm0" firstAttribute="top" secondItem="NKb-d8-wRc" secondAttribute="top" id="VZP-Y8-vJx"/>
+                                                <constraint firstItem="wC8-l2-r66" firstAttribute="trailing" secondItem="NKb-d8-wRc" secondAttribute="trailingMargin" id="lkr-ri-sjx"/>
+                                                <constraint firstItem="wC8-l2-r66" firstAttribute="bottom" secondItem="NKb-d8-wRc" secondAttribute="bottomMargin" id="ovY-Yu-wAO"/>
                                                 <constraint firstItem="spI-4o-pm0" firstAttribute="leading" secondItem="NKb-d8-wRc" secondAttribute="leading" id="t6f-Kd-uAJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -264,6 +280,48 @@
             </objects>
             <point key="canvasLocation" x="990" y="71"/>
         </scene>
+        <!--MapVC-->
+        <scene sceneID="Buu-gc-o52">
+            <objects>
+                <viewController id="BQy-px-Pku" customClass="MapVC" customModule="Favoplace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eYi-mI-sEf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1ti-zn-gBa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-pU-wHu">
+                                <rect key="frame" x="339" y="40" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="I6H-6u-wzs"/>
+                                    <constraint firstAttribute="height" constant="35" id="fcY-Yc-zzy"/>
+                                </constraints>
+                                <state key="normal" image="close-button"/>
+                                <connections>
+                                    <action selector="closeButtonTouched" destination="BQy-px-Pku" eventType="touchUpInside" id="Y8d-of-tvP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nss-na-FRQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1ti-zn-gBa" firstAttribute="trailing" secondItem="Nss-na-FRQ" secondAttribute="trailing" id="AUM-Kf-oMo"/>
+                            <constraint firstItem="1ti-zn-gBa" firstAttribute="leading" secondItem="Nss-na-FRQ" secondAttribute="leading" id="BKb-Sw-dgx"/>
+                            <constraint firstItem="Nss-na-FRQ" firstAttribute="trailing" secondItem="NTe-pU-wHu" secondAttribute="trailing" constant="40" id="Fbh-jZ-L08"/>
+                            <constraint firstAttribute="bottom" secondItem="1ti-zn-gBa" secondAttribute="bottom" id="Mod-Nx-1eY"/>
+                            <constraint firstItem="1ti-zn-gBa" firstAttribute="top" secondItem="eYi-mI-sEf" secondAttribute="top" id="QkB-Qm-oGD"/>
+                            <constraint firstItem="NTe-pU-wHu" firstAttribute="top" secondItem="Nss-na-FRQ" secondAttribute="top" constant="40" id="SJC-bO-jfG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="1ti-zn-gBa" id="C6k-Kz-nGF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3FP-JR-2y4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840.5797101449277" y="70.982142857142847"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MyN-un-6hE">
             <objects>
@@ -306,6 +364,11 @@
         <segue reference="lcE-f2-yRA"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="close-button" width="170.5" height="170.5"/>
         <image name="default-image" width="240" height="135"/>
+        <image name="maps-and-flags" width="170.5" height="170.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -15,7 +15,7 @@ class NewPlaceVC: UITableViewController {
     @IBOutlet weak var inputAddress: UITextField!
     @IBOutlet weak var inputType: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
+
     // Cell index for image selection
     let imageIndexCell = 0
     
@@ -70,6 +70,23 @@ class NewPlaceVC: UITableViewController {
         } else {
             view.endEditing(true)
         }
+        
+    }
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier != "ShowMap" {
+            return
+        }
+        
+        let mapVC = segue.destination as! MapVC
+        
+        mapVC.placeData.title = inputName.text!
+        mapVC.placeData.locationAddress = inputAddress.text
+        mapVC.placeData.type = inputType.text
+        mapVC.placeData.imageOfPlace = inputImage.image?.pngData()
         
     }
     

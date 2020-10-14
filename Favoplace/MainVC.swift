@@ -157,14 +157,14 @@ class MainVC: UITableViewController {
         
         // Button to sort by date
         let newest = UIAlertAction(title: "Newest", style: .default) { (_) in
-            self.places = self.places!.sorted(byKeyPath: "date", ascending: false)
+            self.places = self.places!.sorted(byKeyPath: "date", ascending: true)
             self.tableView.reloadData()
         }
         actionSheet.addAction(newest)
         
         // Button to sort by date
         let oldest = UIAlertAction(title: "Oldest", style: .default) { (_) in
-            self.places = self.places!.sorted(byKeyPath: "date", ascending: true)
+            self.places = self.places!.sorted(byKeyPath: "date", ascending: false)
             self.tableView.reloadData()
         }
         actionSheet.addAction(oldest)

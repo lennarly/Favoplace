@@ -18,6 +18,7 @@
 		EB881213252C359D0003815D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB881212252C359D0003815D /* MainVC.swift */; };
 		EB881215252C3DC60003815D /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB881214252C3DC60003815D /* PlaceCell.swift */; };
 		EBEB437F252D921E00DDA4B5 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */; };
+		EBF784AE2535E3B900B5CC0B /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF784AD2535E3B900B5CC0B /* MapVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		EB881212252C359D0003815D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		EB881214252C3DC60003815D /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		EBF784AD2535E3B900B5CC0B /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		F8AC46495FC3509E013321D9 /* Pods-Favoplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favoplace.debug.xcconfig"; path = "Target Support Files/Pods-Favoplace/Pods-Favoplace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				EB1F5E5C2530A417007114EF /* StorageManager.swift */,
 				EB881212252C359D0003815D /* MainVC.swift */,
 				EB7A8574252E1F4C009355E5 /* NewPlaceVC.swift */,
+				EBF784AD2535E3B900B5CC0B /* MapVC.swift */,
 				EB881214252C3DC60003815D /* PlaceCell.swift */,
 				EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */,
 				EB881204252C300D0003815D /* Main.storyboard */,
@@ -132,7 +135,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Lenar Valeev";
 				TargetAttributes = {
 					EB8811FA252C300D0003815D = {
@@ -223,6 +226,7 @@
 				EB8811FF252C300D0003815D /* AppDelegate.swift in Sources */,
 				EB1F5E5D2530A417007114EF /* StorageManager.swift in Sources */,
 				EBEB437F252D921E00DDA4B5 /* PlaceModel.swift in Sources */,
+				EBF784AE2535E3B900B5CC0B /* MapVC.swift in Sources */,
 				EB881215252C3DC60003815D /* PlaceCell.swift in Sources */,
 				EB881201252C300D0003815D /* SceneDelegate.swift in Sources */,
 			);
@@ -276,6 +280,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -336,6 +341,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
