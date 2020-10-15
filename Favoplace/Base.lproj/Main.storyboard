@@ -302,6 +302,19 @@
                                     <action selector="closeButtonTouched" destination="BQy-px-Pku" eventType="touchUpInside" id="Y8d-of-tvP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSG-Yt-cnk">
+                                <rect key="frame" x="339" y="733" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="NKZ-NA-u7d"/>
+                                    <constraint firstAttribute="width" constant="35" id="qsB-vb-zqr"/>
+                                    <constraint firstAttribute="height" constant="35" id="uhR-bG-EhL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="wnH-Qp-NGL"/>
+                                </constraints>
+                                <state key="normal" image="navigator"/>
+                                <connections>
+                                    <action selector="locationButtonTouched" destination="BQy-px-Pku" eventType="touchUpInside" id="n70-xR-sRK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nss-na-FRQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -312,6 +325,8 @@
                             <constraint firstAttribute="bottom" secondItem="1ti-zn-gBa" secondAttribute="bottom" id="Mod-Nx-1eY"/>
                             <constraint firstItem="1ti-zn-gBa" firstAttribute="top" secondItem="eYi-mI-sEf" secondAttribute="top" id="QkB-Qm-oGD"/>
                             <constraint firstItem="NTe-pU-wHu" firstAttribute="top" secondItem="Nss-na-FRQ" secondAttribute="top" constant="40" id="SJC-bO-jfG"/>
+                            <constraint firstItem="Nss-na-FRQ" firstAttribute="bottom" secondItem="rSG-Yt-cnk" secondAttribute="bottom" constant="40" id="b6d-ne-WSo"/>
+                            <constraint firstItem="Nss-na-FRQ" firstAttribute="trailing" secondItem="rSG-Yt-cnk" secondAttribute="trailing" constant="40" id="enf-WT-CtX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -367,6 +382,7 @@
         <image name="close-button" width="170.5" height="170.5"/>
         <image name="default-image" width="240" height="135"/>
         <image name="maps-and-flags" width="170.5" height="170.5"/>
+        <image name="navigator" width="170.5" height="170.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

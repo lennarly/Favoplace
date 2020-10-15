@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapVC: UIViewController {
     
@@ -17,7 +18,13 @@ class MapVC: UIViewController {
     // Annotation Identifier
     private let annotationIdentifier = "annotationIdentifier"
     
-    // Map View
+    // Location manager
+    private let locationManager = CLLocationManager()
+    
+    // The radius of the centering
+    let regionInMeters = 10_000.00
+    
+    // Managing the Map View
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -29,6 +36,9 @@ class MapVC: UIViewController {
 
         // Setup placemark
         setupPlacemark()
+        
+        // Checking geolocation services
+        checkLocationServices()
         
     }
     
@@ -54,6 +64,79 @@ class MapVC: UIViewController {
             
             self.mapView.showAnnotations([annotation], animated: true)
             self.mapView.selectAnnotation(annotation, animated: true)
+        }
+        
+    }
+    
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorization()
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.showAlert(title: nil,
+                               message: "Turn On Location Services to Allow the App to Determine Your Location")
+            }
+        }
+    }
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    private func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        
+            case .authorizedWhenInUse:
+                mapView.showsUserLocation = true
+                break
+                
+            case .denied, .restricted:
+                self.showAlert(title: nil,
+                               message: "Turn On Location Services to Allow the App to Determine Your Location")
+                break
+                
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                break
+                
+            case .authorizedAlways:
+                break
+                
+            @unknown default:
+                print("checkLocationAuthorization - you need to add a new case")
+        }
+        
+    }
+    
+    private func showAlert(title: String?, message: String) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancel)
+        
+        let settings = UIAlertAction(title: "Settings", style: .default) { (_) in
+            let url = URL(string: UIApplication.openSettingsURLString)
+            if UIApplication.shared.canOpenURL(url!) {
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(settings)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func locationButtonTouched() {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location,
+                                                 latitudinalMeters: regionInMeters,
+                                                 longitudinalMeters: regionInMeters)
+            
+            mapView.setRegion(region, animated: true)
         }
         
     }
@@ -90,6 +173,14 @@ extension MapVC: MKMapViewDelegate {
 
         return annotationView
         
+    }
+    
+}
+
+extension MapVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
     }
     
 }

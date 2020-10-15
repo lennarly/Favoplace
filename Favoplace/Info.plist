@@ -25,7 +25,9 @@
 	<key>NSAllowsArbitraryLoads</key>
 	<string>true</string>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) photo use</string>
+	<string>$(PRODUCT_NAME) To set a photo of a place</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your current geolocation will be displayed on the map and used to provide routes</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
