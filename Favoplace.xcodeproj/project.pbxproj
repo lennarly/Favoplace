@@ -99,8 +99,8 @@
 				EB881214252C3DC60003815D /* PlaceCell.swift */,
 				EBEB437E252D921E00DDA4B5 /* PlaceModel.swift */,
 				EB881204252C300D0003815D /* Main.storyboard */,
-				EB881207252C300E0003815D /* Assets.xcassets */,
 				EB881209252C300E0003815D /* LaunchScreen.storyboard */,
+				EB881207252C300E0003815D /* Assets.xcassets */,
 				EB88120C252C300E0003815D /* Info.plist */,
 			);
 			path = Favoplace;
@@ -385,7 +385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = yourlenar.Favoplace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -404,7 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = yourlenar.Favoplace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

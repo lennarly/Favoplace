@@ -35,6 +35,13 @@ class MainVC: UITableViewController {
         
     }
     
+    // MARK: Custom reload data
+    
+    private func reloadData() {
+        self.setupObserveNotifications()
+        self.tableView.reloadData()
+    }
+    
     // MARK: Observe Results Notifications
     
     private func setupObserveNotifications() {
@@ -151,21 +158,21 @@ class MainVC: UITableViewController {
         // Button to sort alphabetically
         let alphabet = UIAlertAction(title: "Alphabetical", style: .default) { (_) in
             self.places = self.places!.sorted(byKeyPath: "title", ascending: true)
-            self.tableView.reloadData()
+            self.reloadData()
         }
         actionSheet.addAction(alphabet)
         
         // Button to sort by date
         let newest = UIAlertAction(title: "Newest", style: .default) { (_) in
             self.places = self.places!.sorted(byKeyPath: "date", ascending: true)
-            self.tableView.reloadData()
+            self.reloadData()
         }
         actionSheet.addAction(newest)
         
         // Button to sort by date
         let oldest = UIAlertAction(title: "Oldest", style: .default) { (_) in
             self.places = self.places!.sorted(byKeyPath: "date", ascending: false)
-            self.tableView.reloadData()
+            self.reloadData()
         }
         actionSheet.addAction(oldest)
         
@@ -222,8 +229,7 @@ extension MainVC: UISearchResultsUpdating {
             self.places = places.filter("title CONTAINS[c] %@ OR locationAddress CONTAINS[c] %@", searchText, searchText)
         }
         
-        self.tableView.reloadData()
-        self.setupObserveNotifications()
+        self.reloadData()
     }
     
 }

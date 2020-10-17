@@ -10,22 +10,31 @@ import UIKit
 import MapKit
 import CoreLocation
 
+protocol MapVCD {
+    func getAddress(_ address: String?)
+}
+
 class MapVC: UIViewController {
     
-    // Place Data Storage
+    // Delegate
+    var mapVCD: MapVCD?
+    
+    // Place Data Storage & Segue Identifier
     public var placeData = Place()
+    public var incomingSegueIdentifier = ""
     
-    // Annotation Identifier
+    // Annotation Identifier & Location manager
     private let annotationIdentifier = "annotationIdentifier"
-    
-    // Location manager
     private let locationManager = CLLocationManager()
     
     // The radius of the centering
-    let regionInMeters = 10_000.00
+    private let regionInMeters = 10_000.00
     
     // Managing the Map View
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var centeredPin: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         
@@ -34,11 +43,25 @@ class MapVC: UIViewController {
         // Init delegate for Map View
         mapView.delegate = self
 
-        // Setup placemark
-        setupPlacemark()
+        // Setup map view
+        setupMapView()
         
         // Checking geolocation services
         checkLocationServices()
+        
+    }
+    
+    private func setupMapView() {
+        
+        // The default adresss is empty
+        addressLabel.text = ""
+        
+        if incomingSegueIdentifier == "showPlace" {
+            setupPlacemark()
+            centeredPin.isHidden = true
+            addressLabel.isHidden = true
+            doneButton.isHidden = true
+        }
         
     }
     
@@ -90,6 +113,7 @@ class MapVC: UIViewController {
         
             case .authorizedWhenInUse:
                 mapView.showsUserLocation = true
+                if incomingSegueIdentifier == "getAddress" { showUserLocation() }
                 break
                 
             case .denied, .restricted:
@@ -108,6 +132,24 @@ class MapVC: UIViewController {
                 print("checkLocationAuthorization - you need to add a new case")
         }
         
+    }
+    
+    private func showUserLocation() {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location,
+                                                 latitudinalMeters: regionInMeters,
+                                                 longitudinalMeters: regionInMeters)
+            
+            mapView.setRegion(region, animated: true)
+        }
+        
+    }
+    
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
     
     private func showAlert(title: String?, message: String) {
@@ -130,15 +172,12 @@ class MapVC: UIViewController {
     }
     
     @IBAction func locationButtonTouched() {
-        
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location,
-                                                 latitudinalMeters: regionInMeters,
-                                                 longitudinalMeters: regionInMeters)
-            
-            mapView.setRegion(region, animated: true)
-        }
-        
+        showUserLocation()
+    }
+    
+    @IBAction func doneButtonTouched() {
+        mapVCD?.getAddress(addressLabel.text)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func closeButtonTouched() {
@@ -173,6 +212,41 @@ extension MapVC: MKMapViewDelegate {
 
         return annotationView
         
+    }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        DispatchQueue.main.async {
+            self.addressLabel.text = "checking..."
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let placemark = placemarks?.first else { return }
+            
+            let streetName = placemark.thoroughfare
+            let buildNumber = placemark.subThoroughfare
+            
+            DispatchQueue.main.async {
+                if streetName != nil && buildNumber != nil {
+                    self.addressLabel.text = "\(streetName!), \(buildNumber!)"
+                } else if(streetName != nil) {
+                    self.addressLabel.text = "\(streetName!)"
+                } else {
+                    self.addressLabel.text = ""
+                }
+
+            }
+            
+        }
     }
     
 }

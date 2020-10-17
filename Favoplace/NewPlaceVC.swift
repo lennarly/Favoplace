@@ -77,16 +77,16 @@ class NewPlaceVC: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier != "ShowMap" {
-            return
+        guard let identifier = segue.identifier, let mapVC = segue.destination as? MapVC else { return }
+        mapVC.incomingSegueIdentifier = identifier
+        mapVC.mapVCD = self
+        
+        if identifier == "showPlace" {
+            mapVC.placeData.title = inputName.text!
+            mapVC.placeData.locationAddress = inputAddress.text
+            mapVC.placeData.type = inputType.text
+            mapVC.placeData.imageOfPlace = inputImage.image?.pngData()
         }
-        
-        let mapVC = segue.destination as! MapVC
-        
-        mapVC.placeData.title = inputName.text!
-        mapVC.placeData.locationAddress = inputAddress.text
-        mapVC.placeData.type = inputType.text
-        mapVC.placeData.imageOfPlace = inputImage.image?.pngData()
         
     }
     
@@ -198,4 +198,10 @@ extension NewPlaceVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
     }
     
+}
+
+extension NewPlaceVC: MapVCD {
+    func getAddress(_ address: String?) {
+        inputAddress.text = address
+    }
 }
