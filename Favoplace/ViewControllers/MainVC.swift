@@ -71,13 +71,13 @@ class MainVC: UITableViewController {
         }
     }
     
-    // MARK: Search controller params
+    // MARK: Search controller
     
     private func setupSearchController() {
         
+        searchController.searchBar.placeholder = "Search"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
         
         navigationItem.searchController = searchController
         definesPresentationContext = true
