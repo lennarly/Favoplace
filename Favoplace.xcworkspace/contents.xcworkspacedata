@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/yourlenar/Documents/iOS Development/Projects/Favoplace/Favoplace/Support Files/SceneDelegate.swift">
-   </FileRef>
-   <FileRef
       location = "group:Favoplace.xcodeproj">
    </FileRef>
    <FileRef

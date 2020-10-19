@@ -113,7 +113,7 @@ class MapVC: UIViewController {
     }
 
     @IBAction func routeButtonTouched() {
-        mapManager.getDirections(for: mapView) { (location) in
+        mapManager.buildRoutes(for: mapView) { (location) in
             self.previousLocation = location
         }
     }
@@ -170,7 +170,7 @@ extension MapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        let center = mapManager.getCenterLocation(for: mapView)
+        let center = mapManager.getLocationFromCenter(for: mapView)
         let geocoder = CLGeocoder()
         
         if incomingSegueIdentifier == "showPlace" && previousLocation != nil {

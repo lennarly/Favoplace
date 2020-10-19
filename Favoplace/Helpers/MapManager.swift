@@ -95,7 +95,7 @@ class MapManager {
     }
     
     // Building a route from location to location
-    func getDirections(for mapView: MKMapView, previousLocation: (CLLocation) -> ()) {
+    func buildRoutes(for mapView: MKMapView, previousLocation: (CLLocation) -> ()) {
         
         guard let location = locationManager.location?.coordinate else {
             showAlert(title: "Error", message: "Current location is not found")
@@ -149,8 +149,8 @@ class MapManager {
         
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
-        
         let request = MKDirections.Request()
+        
         request.source = MKMapItem(placemark: startingLocation)
         request.destination = MKMapItem(placemark: destination)
         request.transportType = .automobile
@@ -161,10 +161,13 @@ class MapManager {
     }
     
     // Change the displayed area of the map area according to user variables
-    func startTrackingUserLocation(for mapView: MKMapView, and location: CLLocation?, closure: (_ currentLocation: CLLocation) -> ()) {
+    func startTrackingUserLocation(for mapView: MKMapView,
+                                   and location: CLLocation?,
+                                   closure: (_ currentLocation: CLLocation) -> ()) {
         
         guard let location = location else { return }
-        let center = getCenterLocation(for: mapView)
+        
+        let center = getLocationFromCenter(for: mapView)
         guard center.distance(from: location) > 50 else { return }
         
         closure(center)
@@ -173,17 +176,23 @@ class MapManager {
     
     // Resetting all previously built routes before building a new one
     func resetMapView(withNew directions: MKDirections, mapView: MKMapView) {
+        
         mapView.removeOverlays(mapView.overlays)
         directionsArray.append(directions)
+        
         let _ = directionsArray.map { $0.cancel() }
         directionsArray.removeAll()
+        
     }
     
     // Determining the center of the displayed map area
-    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+    func getLocationFromCenter(for mapView: MKMapView) -> CLLocation {
+        
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
+        
         return CLLocation(latitude: latitude, longitude: longitude)
+        
     }
     
     // Display notification
